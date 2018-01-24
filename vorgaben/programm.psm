@@ -1,0 +1,59 @@
+;
+;  C31 Embedded Systems Klausur am 19. Juli 2017
+;  Name:
+;  Vorname:
+;  Matrikelnummer:
+;
+
+
+led_reg EQU s9
+
+t_in_port0 DSIO $00
+t_in_port1 DSIO $01
+t_in_port2 DSIO $02
+t_in_port3 DSIO $03
+
+status_port DSIO $04
+
+led_port DSOUT $05
+
+ORG 0
+
+EINT
+
+BEGIN:
+	  load led_reg, $00
+	  load s0, $00
+	  out s0, status_port
+	
+	  load s0, $02
+	  load s1, $FA
+	  load s2, $F0
+	  load s3, $80
+	  
+	  out s0, t_in_port0
+	  out s1, t_in_port1
+	  out s2, t_in_port2
+	  out s3, t_in_port3
+	
+	
+	  load s0, $03
+	  out s0, status_port	
+	
+LOOP:
+	 jump LOOP
+	
+
+ISR:
+	add led_reg, $01
+	out led_reg, led_port
+	RETI ENABLE
+	
+
+
+
+ORG $3FF
+jump ISR
+
+
+VHDL "template.vhd", "programm.vhd", "programm"

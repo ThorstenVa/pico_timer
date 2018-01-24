@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "C:/Users/Thorsten/Desktop/klausur_picoblaze_timer/tb_timer_isim_beh.exe" -prj "C:/Users/Thorsten/Desktop/klausur_picoblaze_timer/tb_timer_beh.prj" "work.tb_timer" 
